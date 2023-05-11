@@ -5,14 +5,14 @@ const router = express.Router();
 const externals = require('../externals');
 
 router.post('/', async (req, res, next) => {
-  const payload = req.body.payload;
+  const reqBody = req.body;
   if(payload.type === 'text'){
     const body = {
       message: {
-        text: payload.payload.text
+        text: reqBody.payload.payload.text
       },
       from: {
-        id: req.body.sender.phone
+        id: reqBody.sender.phone
       }
     }
     const query = externals.koreQueryResolver(body);
