@@ -4,7 +4,6 @@ const router = express.Router();
 
 const externals = require('../externals');
 
-/* GET home page. */
 router.post('/', (req, res, next) => {
   const payload = req.body.payload;
   if(payload.type === 'text'){
