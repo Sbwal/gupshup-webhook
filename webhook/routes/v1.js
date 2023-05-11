@@ -9,10 +9,10 @@ router.post('/', async (req, res, next) => {
   if(payload.type === 'text'){
     const body = {
       message: {
-        text: reqBody.payload.payload.text
+        text: reqBody?.payload?.payload?.text
       },
       from: {
-        id: reqBody.sender.phone
+        id: reqBody?.sender?.phone
       }
     }
     const query = externals.koreQueryResolver(body);
