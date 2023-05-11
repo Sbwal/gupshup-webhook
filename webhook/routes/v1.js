@@ -4,7 +4,7 @@ const router = express.Router();
 
 const externals = require('../externals');
 
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
   const payload = req.body.payload;
   if(payload.type === 'text'){
     const body = {
@@ -15,7 +15,8 @@ router.post('/', (req, res, next) => {
         id: req.body.sender.phone
       }
     }
-    res.send(externals.koreQueryResolver(body).text);
+    const query = externals.koreQueryResolver(body);
+    res.send(query.text);
   }
   else res.send('Acknowledged');
 })
