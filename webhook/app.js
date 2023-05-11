@@ -1,10 +1,10 @@
-var express = require('express');
-var logger = require('morgan');
-var debug = require('debug')('webhook:app');
+const express = require('express');
+const logger = require('morgan');
+const debug = require('debug')('webhook:app');
 
-var v1Router = require('./routes/v1');
+const v1Router = require('./routes/v1');
 
-var app = express();
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
