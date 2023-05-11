@@ -23,3 +23,7 @@ const koreQueryResolver = (body) => {
     });
 
 }
+
+module.exports = {
+    koreQueryResolver
+}
