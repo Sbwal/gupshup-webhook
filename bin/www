@@ -15,6 +15,9 @@ const config = require('../config/default');
  * Get port from environment and store in Express.
  */
 
+console.log(config.app.port, process.env.PORT, JSON.stringify(config))
+config.fun();
+debug(config.app.port);
 const port = normalizePort(config.app.port || '3000');
 app.set('port', port);
 

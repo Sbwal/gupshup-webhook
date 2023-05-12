@@ -6,21 +6,26 @@ const externals = require('../externals');
 const queryHandler = require('../handlers/queryHandler');
 
 router.post('/', async (req, res, next) => {
-  const reqBody = req.body;
-  if(payload.type === 'text'){
-    const body = {
-      message: {
-        text: reqBody?.payload?.payload?.text
-      },
-      from: {
-        id: reqBody?.sender?.phone
+  try {
+    const reqBody = req.body;
+    if (payload.type === 'text') {
+      const body = {
+        message: {
+          text: reqBody?.payload?.payload?.text
+        },
+        from: {
+          id: reqBody?.sender?.phone
+        }
       }
+      const query = externals.koreQueryResolver(body);
+      const text = queryHandler(query);
+      res.send(text);
     }
-    const query = externals.koreQueryResolver(body);
-    const text = queryHandler(query);
-    res.send(text);
+    else res.send('Acknowledged');
+  } catch (err) {
+    debug(err);
+    res.statusCode(400).json({ err });
   }
-  else res.send('Acknowledged');
 })
 
 module.exports = router;

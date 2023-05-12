@@ -15,7 +15,7 @@ const koreQueryResolver = async (body) => {
         };
 
         const response = axios.request(options);
-        console.log(response.data);
+        debug(response.data);
         return response.data;
     }
     catch (error) {
