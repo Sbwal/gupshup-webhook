@@ -8,6 +8,5 @@ module.exports = {
             jwt: process.env.KORE_BOT_JWT,
             url: process.env.KORE_BOT_URL
         }
-    },
-    fun: _ => console.log(process.env.PORT)
+    }
 }

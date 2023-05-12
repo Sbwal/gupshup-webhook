@@ -8,23 +8,24 @@ const queryHandler = require('../handlers/queryHandler');
 router.post('/', async (req, res, next) => {
   try {
     const reqBody = req.body;
-    if (payload.type === 'text') {
+    if (req.body.payload.type === 'text') {
       const body = {
         message: {
-          text: reqBody?.payload?.payload?.text
+          text: reqBody?.payload?.payload
         },
         from: {
           id: reqBody?.sender?.phone
         }
       }
-      const query = externals.koreQueryResolver(body);
+      debug(body)
+      const query = await externals.koreQueryResolver(body);
       const text = queryHandler(query);
       res.send(text);
     }
     else res.send('Acknowledged');
   } catch (err) {
-    debug(err);
-    res.statusCode(400).json({ err });
+    debug(err.message);
+    res.status(400).json({ error: err.message });
   }
 })
 
