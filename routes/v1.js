@@ -7,14 +7,15 @@ const queryHandler = require('../handlers/queryHandler');
 
 router.post('/', async (req, res, next) => {
   try {
-    const reqBody = req.body;
+    const payload = req.body.payload;
+    debug(payload)
     if (req.body.payload.type === 'text') {
       const body = {
         message: {
-          text: reqBody?.payload?.payload
+          text: payload.payload?.text
         },
         from: {
-          id: reqBody?.sender?.phone
+          id: payload.sender?.phone
         }
       }
       debug(body)
