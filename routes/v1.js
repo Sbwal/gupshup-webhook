@@ -21,6 +21,22 @@ router.post('/', async (req, res, next) => {
       debug(body)
       const query = await externals.koreQueryResolver(body);
       const text = queryHandler(query);
+      debug('text send:', text)
+      res.send(text);
+    }
+    else if(req.body.payload.type === 'button_reply') {
+      const body = {
+        message: {
+          text: payload.payload?.postbackText
+        },
+        from: {
+          id: payload.sender?.phone
+        }
+      }
+      debug(body)
+      const query = await externals.koreQueryResolver(body);
+      const text = queryHandler(query);
+      debug('text send:', text)
       res.send(text);
     }
     else res.send('Acknowledged');
